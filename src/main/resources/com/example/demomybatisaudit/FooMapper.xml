@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demomybatisaudit.FooMapper">
+
+    <select id="findAll" resultType="com.example.demomybatisaudit.Foo">
+        SELECT
+            id,
+            message,
+            updated_by
+        FROM foo
+    </select>
+
+    <insert id="insert" parameterType="com.example.demomybatisaudit.Foo">
+        <bind name="username" value="@com.example.demomybatisaudit.LoginUsers@username()"/>
+
+        INSERT INTO foo (message, updated_by) VALUES (#{message}, #{username})
+    </insert>
+</mapper>
